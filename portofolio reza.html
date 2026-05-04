@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reza Ardiyansah - Data & Business Intelligence Analyst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --superbank-green: #00e699;
+            --superbank-dark-green: #00cc88;
+            --superbank-black: #0d0d0d;
+            --superbank-gray: #1a1a1a;
+            --superbank-light-gray: #2a2a2a;
+            --superbank-text: #ffffff;
+            --superbank-text-secondary: #b3b3b3;
+            --superbank-border: #333333;
+            --superbank-gradient: linear-gradient(135deg, #00e699, #00cc88);
+            --superbank-glow: rgba(0, 230, 153, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--superbank-black);
+            color: var(--superbank-text);
+            line-height: 1.6;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--superbank-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--superbank-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--superbank-dark-green);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 230, 153, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--superbank-green);
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 20px var(--superbank-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--superbank-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--superbank-green);
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        .nav-links a:hover {
+            color: var(--superbank-text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 230, 153, 0.1) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--superbank-green), transparent);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-section {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background: var(--superbank-green);
+            padding: 3px;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px var(--superbank-glow);
+            transition: all 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px var(--superbank-green);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--superbank-black);
+        }
+
+        .connection-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--superbank-gray);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--superbank-border);
+            color: var(--superbank-text-secondary);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .hero-main h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title {
+            font-size: 24px;
+            color: var(--superbank-green);
+            margin-bottom: 16px;
+            font-weight: 500;
+            text-shadow: 0 0 20px var(--superbank-glow);
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(0, 230, 153, 0.1);
+            border: 1px solid rgba(0, 230, 153, 0.3);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: var(--superbank-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .open-to-work {
+            background: rgba(0, 230, 153, 0.15);
+            border: 1px solid rgba(0, 230, 153, 0.4);
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--superbank-green);
+            margin-bottom: 30px;
+            font-size: 14px;
+            box-shadow: 0 0 20px rgba(0, 230, 153, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--superbank-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .contact-item:hover {
+            color: var(--superbank-green);
+            text-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--superbank-green), transparent);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--superbank-text);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--superbank-green);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 40px;
+            height: 2px;
+            background: var(--superbank-green);
+            box-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        .view-all {
+            color: var(--superbank-green);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+        }
+
+        .view-all:hover {
+            gap: 8px;
+            text-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 16px;
+            color: var(--superbank-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+            background: var(--superbank-gray);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--superbank-border);
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .expertise-tag {
+            background: var(--superbank-gray);
+            border: 1px solid var(--superbank-border);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--superbank-text-secondary);
+            transition: all 0.3s;
+        }
+
+        .expertise-tag:hover {
+            border-color: var(--superbank-green);
+            background: rgba(0, 230, 153, 0.1);
+            transform: translateY(-2px);
+            color: var(--superbank-text);
+            box-shadow: 0 0 15px var(--superbank-glow);
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .exp-card {
+            background: var(--superbank-gray);
+            border: 1px solid var(--superbank-border);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--superbank-green);
+            box-shadow: 0 0 10px var(--superbank-green);
+            transition: height 0.3s;
+        }
+
+        .exp-card:hover {
+            border-color: var(--superbank-green);
+            transform: translateX(8px);
+            background: linear-gradient(145deg, var(--superbank-gray), #1f1f1f);
+            box-shadow: 0 0 30px rgba(0, 230, 153, 0.1);
+        }
+
+        .exp-card:hover::before {
+            height: 100%;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .exp-title h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--superbank-text);
+            margin-bottom: 6px;
+        }
+
+        .exp-company {
+            color: var(--superbank-green);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .exp-company::before {
+            content: '🏢';
+            font-size: 14px;
+            filter: brightness(0) saturate(100%) invert(69%) sepia(96%) saturate(375%) hue-rotate(98deg) brightness(105%) contrast(101%);
+        }
+
+        .exp-date {
+            color: var(--superbank-green);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            background: rgba(0, 230, 153, 0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(0, 230, 153, 0.2);
+            white-space: nowrap;
+        }
+
+        .exp-content {
+            color: var(--superbank-text-secondary);
+            font-size: 15px;
+        }
+
+        .exp-content ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .exp-content li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .exp-content li::before {
+            content: '→';
+            color: var(--superbank-green);
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+        }
+
+        .achievements-list {
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(0, 230, 153, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 230, 153, 0.1);
+        }
+
+        .achievements-list p {
+            color: var(--superbank-green);
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .achievements-list p::before {
+            content: '🏆';
+            filter: brightness(0) saturate(100%) invert(69%) sepia(96%) saturate(375%) hue-rotate(98deg) brightness(105%) contrast(101%);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: var(--superbank-light-gray);
+            border: 1px solid var(--superbank-border);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--superbank-text-secondary);
+        }
+
+        /* Award Cards */
+        .award-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .award-card {
+            background: var(--superbank-gray);
+            border: 1px solid var(--superbank-border);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .award-card:hover {
+            border-color: var(--superbank-green);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(0, 230, 153, 0.2);
+        }
+
+        .award-badge {
+            display: inline-block;
+            background: var(--superbank-green);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: var(--superbank-black);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px var(--superbank-green);
+        }
+
+        .award-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--superbank-text);
+            margin-bottom: 12px;
+        }
+
+        .award-issuer {
+            color: var(--superbank-green);
+            font-size: 15px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .award-desc {
+            color: var(--superbank-text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .stat-item {
+            background: var(--superbank-light-gray);
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--superbank-border);
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--superbank-green);
+            box-shadow: 0 0 20px var(--superbank-glow);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--superbank-green);
+            margin-bottom: 4px;
+            text-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        .stat-label {
+            color: var(--superbank-text-secondary);
+            font-size: 13px;
+        }
+
+        /* Recommendations */
+        .recom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .recom-card {
+            background: var(--superbank-gray);
+            border: 1px solid var(--superbank-border);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .recom-card:hover {
+            border-color: var(--superbank-green);
+            transform: translateY(-4px);
+            box-shadow: 0 0 30px rgba(0, 230, 153, 0.1);
+        }
+
+        .recom-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .recom-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--superbank-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--superbank-black);
+            font-weight: 600;
+            font-size: 20px;
+            box-shadow: 0 0 20px var(--superbank-green);
+        }
+
+        .recom-info h4 {
+            color: var(--superbank-text);
+            margin-bottom: 4px;
+            font-size: 18px;
+        }
+
+        .recom-info p {
+            color: var(--superbank-green);
+            font-size: 13px;
+        }
+
+        .recom-text {
+            color: var(--superbank-text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .recom-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 40px;
+            color: var(--superbank-green);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .recom-date {
+            color: var(--superbank-text-secondary);
+            font-size: 12px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .language-item {
+            background: var(--superbank-gray);
+            border: 1px solid var(--superbank-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .language-item:hover {
+            border-color: var(--superbank-green);
+            box-shadow: 0 0 20px var(--superbank-glow);
+        }
+
+        .language-name {
+            color: var(--superbank-text);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-level {
+            color: var(--superbank-green);
+            font-size: 14px;
+            padding: 4px 12px;
+            background: rgba(0, 230, 153, 0.1);
+            border-radius: 30px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(145deg, var(--superbank-gray), var(--superbank-black));
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-block {
+            text-align: center;
+        }
+
+        .stat-block .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--superbank-green);
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px var(--superbank-green);
+        }
+
+        .stat-block .label {
+            color: var(--superbank-text-secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .linkedin-url {
+            background: var(--superbank-gray);
+            padding: 16px 32px;
+            border-radius: 50px;
+            border: 1px solid var(--superbank-border);
+            color: var(--superbank-text-secondary);
+            font-size: 15px;
+            margin: 30px 0;
+            word-break: break-all;
+            font-family: monospace;
+            transition: all 0.3s;
+        }
+
+        .linkedin-url:hover {
+            border-color: var(--superbank-green);
+            box-shadow: 0 0 20px var(--superbank-glow);
+            color: var(--superbank-green);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--superbank-text-secondary);
+            font-size: 14px;
+            border-top: 1px solid var(--superbank-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .profile-section {
+                margin: 0 auto;
+            }
+
+            .hero-main {
+                text-align: center;
+            }
+
+            .hero-badges {
+                justify-content: center;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .award-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-main h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+
+            .profile-stats {
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Glow effect for Superbank style */
+        .glow-text {
+            text-shadow: 0 0 10px var(--superbank-green);
+        }
+
+        .glow-border {
+            box-shadow: 0 0 10px var(--superbank-green);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">Reza Ardiyansah</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#awards">Awards</a>
+                <a href="#recommendations">Recommendations</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="https://iili.io/qdnzJv2.png" alt="Reza Ardiyansah">
+                    </div>
+                    
+                </div>
+
+                <div class="hero-main">
+                    <h1>Reza Ardiyansah</h1>
+                    <div class="hero-title">Data Analyst & Business Intelligence Analyst</div>
+                    
+                    <div class="hero-badges">
+                        <span class="badge">📍 West Java, Indonesia</span>
+                        <span class="badge">🏢 PT Semen Indonesia (Persero) Tbk</span>
+                        <span class="badge">🎓 Universitas Gunadarma</span>
+                        <span class="badge">📊 BNSP Certified</span>
+                    </div>
+
+                    <div class="open-to-work">
+                        <span>✨ Open to work</span>
+                        <span>Data and Business Intelligence Related</span>
+                    </div>
+
+                    <div class="contact-info">
+                        <a href="tel:+6285714699593" class="contact-item">📞 +62 857 1469 9593</a>
+                        <a href="mailto:rezaardiyansah91@gmail.com" class="contact-item">✉️ rezaardiyansah91@gmail.com</a>
+                        <a href="#" class="contact-item">🔗 https://www.linkedin.com/in/reza-ardiyansah-176775131/</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About</h2>
+            </div>
+            
+            <div class="about-text">
+                <p>Data Analyst experienced in Business Intelligence with a proven track record in turning complex data into actionable business insights. Specialized in creating clear and effective data visualizations that simplify complex information. Led multiple digitalization projects in Sales Department, including system development, user acceptance testing, and enterprise data warehouse implementation. Passionate about leveraging data to drive business decisions and improve operational efficiency.</p>
+            </div>
+
+            <div class="expertise-tags">
+                <span class="expertise-tag">Data Analysis</span>
+                <span class="expertise-tag">Business Intelligence</span>
+                <span class="expertise-tag">Power BI</span>
+                <span class="expertise-tag">Tableau</span>
+                <span class="expertise-tag">Google Looker Studio</span>
+                <span class="expertise-tag">SQL</span>
+                <span class="expertise-tag">SAP ERP (SD, FI, MM)</span>
+                <span class="expertise-tag">Data Warehouse</span>
+                <span class="expertise-tag">Data Visualization</span>
+                <span class="expertise-tag">Project Management</span>
+                <span class="expertise-tag">SharePoint</span>
+                <span class="expertise-tag">Power Query</span>
+                <span class="expertise-tag">JOTFORM</span>
+                <span class="expertise-tag">AI-Enabled Analytics</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <a href="#" class="view-all">View all →</a>
+            </div>
+
+            <div class="experience-grid">
+                <!-- Current Role -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Data Analyst - Unit of Data Analytics, Innovation & Emerging Tech</h3>
+                            <div class="exp-company">PT Semen Indonesia (Persero) Tbk</div>
+                        </div>
+                        <div class="exp-date">Jan 2026 - Present · 3 mos</div>
+                    </div>
+                    <div class="exp-content">
+                        <p>Jakarta, Indonesia</p>
+                        <ul>
+                            <li>Delivering end-to-end analytics solutions by developing interactive dashboards and reports to support business users and stakeholders in data-driven decision making</li>
+                            <li>Translating business requirements into analytical use cases, providing actionable insights to improve performance and operational efficiency.</li>
+                            <li>Performing data extraction, transformation, and validation to ensure data accuracy, consistency, and reliability</li>
+                            <li>Optimizing queries and data processes to improve performance, scalability, and efficiency of data pipelines.</li>
+                            <li>Collaborate with cross-functional teams to understand analytical needs and deliver scalable data solutions.</li>
+                            <li>Supporting data modeling and KPI development aligned with business objectives.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sr. Sales System Development -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Sr. Sales System Development</h3>
+                            <div class="exp-company">PT Semen Indonesia (Persero) Tbk · On-site</div>
+                        </div>
+                        <div class="exp-date">Jul 2025 - Dec 2025 · 6 mos</div>
+                    </div>
+                    <div class="exp-content">
+                        <p>Jakarta, Indonesia</p>
+                        <ul>
+                            <li>Lead and managing System Development initiatives</li>
+                            <li>Lead and managing Digitalization Project in Sales Department</li>
+                            <li>Developing Data and Visualization with AI-Enabled technologies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sr. Sales Analytics & Development -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Sr. Sales Analytics & Development</h3>
+                            <div class="exp-company">PT Semen Indonesia (Persero) Tbk · Hybrid</div>
+                        </div>
+                        <div class="exp-date">Jun 2023 - Jun 2025 · 2 yrs 1 mo</div>
+                    </div>
+                    <div class="exp-content">
+                        <p>Jakarta Metropolitan Area</p>
+                        <ul>
+                            <li>Developing and supporting Digital Team and Sales team for transition from manual data entry to automated structured data (Data Warehouse, Data Mart)</li>
+                            <li>Creating, developing, and maintaining Sales Analytics Dashboards using BI tools (Power BI, Google Looker Studio, Tableau) in Sales and Marketing Field</li>
+                            <li>Partnering with other Divisions to generate Ad-hoc data analysis requests and diagnose root cause of operational pain points</li>
+                            <li>Creating visualization dashboards for data storytelling using JOTFORM</li>
+                            <li>Making queries using SQL to transform complex data into Business Insights</li>
+                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Looker Studio</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Data Warehouse</span>
+                            <span class="skill-tag">JOTFORM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Process Group -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Sales Process Group</h3>
+                            <div class="exp-company">PT Semen Indonesia (Persero) Tbk</div>
+                        </div>
+                        <div class="exp-date">Feb 2022 - Jun 2023 · 1 yr 5 mos</div>
+                    </div>
+                    <div class="exp-content">
+                        <ul>
+                            <li>Exporting & Compiling Sales Data of Mega Distributor (SIG) using SAP ERP (Module SD, FI, MM)</li>
+                            <li>Creating & Monitoring Dashboard Volume Tracking Domestic Cement All Regional Retail & Corsales</li>
+                            <li>Creating Report of Billing Process (Good Receipt, Invoice, Different Pricing) and providing readable reports on Pivot using MS Excel</li>
+                            <li>Creating Report of Invoices Status update for weekly monitoring purposes</li>
+                            <li>Developing Dashboard of Monitoring Invoice Using Tableau (Data Automation)</li>
+                            <li>Business Process Development</li>
+                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SAP ERP</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Excel</span>
+                            <span class="skill-tag">Process Development</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT Support and Claim Insurance Analyst -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>IT Support and Claim Insurance Analyst</h3>
+                            <div class="exp-company">PT Asuransi Kredit Indonesia (Persero) · Full-time</div>
+                        </div>
+                        <div class="exp-date">Apr 2018 - Jan 2022 · 3 yrs 10 mos</div>
+                    </div>
+                    <div class="exp-content">
+                        <ul>
+                            <li>Supporting IT matters: networking, hardware, software</li>
+                            <li>Analyzing Claim Insurance (Credit Insurance, General Insurance, Government Insurance Product)</li>
+                            <li>Maintaining relationship between Partners on other BUMN/Non</li>
+                            <li>Arranging reconciliation with business partners about Recoveries & Subrogation</li>
+                            <li>Creating daily, weekly, monthly reports using MS Excel</li>
+                            <li>Responsible in Branch Office to coordinate system updates from Head Office</li>
+                            <li>Creating principle permit procurement for disposal/upgraded infrastructure</li>
+                        </ul>
+                        
+                        <div class="achievements-list">
+                            <p>Achievements</p>
+                            <ul>
+                                <li>Accomplished Insurance Subrogation based on yearly target as a team in 2019 - 2021</li>
+                                <li>Finished more than 1000 tasks in analytics of Claim Insurance</li>
+                                <li>Succeeded to build Joint Domain network in Branch to HO Co-op with IT Team</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-tags">
+                            <span class="skill-tag">Insurance Analysis</span>
+                            <span class="skill-tag">Networking</span>
+                            <span class="skill-tag">Reconciliation</span>
+                            <span class="skill-tag">Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing Sys. Analyst Support -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Marketing Sys. Analyst Support</h3>
+                            <div class="exp-company">PT HM Sampoerna Tbk · Contract</div>
+                        </div>
+                        <div class="exp-date">May 2016 - Mar 2018 · 1 yr 11 mos</div>
+                    </div>
+                    <div class="exp-content">
+                        <ul>
+                            <li>Providing access on Marketing system to perform reports in HMS events integrated to devices all areas in Indonesia</li>
+                            <li>Managing marketing system for budgeting</li>
+                            <li>Troubleshooting issues on marketing budgeting system</li>
+                            <li>Creating reports for marketing assets</li>
+                            <li>Providing services to Marketing Department on HMS for IT Support Matters</li>
+                            <li>System Implementing (Testing new release system software/website)</li>
+                        </ul>
+                        
+                        <div class="achievements-list">
+                            <p>Achievements</p>
+                            <ul>
+                                <li>Provided more than 50 Access of Marketing App Platform to Area office</li>
+                                <li>Presented readable reports in Graphical format</li>
+                                <li>Solved numerous technical issues as Admin Clerk</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-tags">
+                            <span class="skill-tag">Marketing Systems</span>
+                            <span class="skill-tag">Budgeting</span>
+                            <span class="skill-tag">Troubleshooting</span>
+                            <span class="skill-tag">Reporting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Area Operation Admin -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Area Operation Admin</h3>
+                            <div class="exp-company">Binasentra Muliatata · Full-time</div>
+                        </div>
+                        <div class="exp-date">Apr 2015 - Apr 2016 · 1 yr 1 mo</div>
+                    </div>
+                    <div class="exp-content">
+                        <ul>
+                            <li>Handling progress telecom project</li>
+                            <li>Creating daily reports about project progress</li>
+                            <li>Maintaining worker needs in the progress</li>
+                            <li>Managing petty cash daily, weekly, monthly</li>
+                            <li>Maintaining hardware, software, network</li>
+                            <li>Creating Petty cash & Inventory Report</li>
+                        </ul>
+                        
+                        <div class="achievements-list">
+                            <p>Achievements</p>
+                            <ul>
+                                <li>Succeeded in supervising workers in every telco project from start until finished</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-tags">
+                            <span class="skill-tag">Project Management</span>
+                            <span class="skill-tag">Reporting</span>
+                            <span class="skill-tag">Petty Cash</span>
+                            <span class="skill-tag">Inventory</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Honors & Awards</h2>
+            </div>
+
+            <div class="award-grid">
+                <!-- SIG Innovation Award -->
+                <div class="award-card">
+                    <div class="award-badge">SIG Innovation Award 2025</div>
+                    <div class="award-title">2nd Place - Category Digitalization</div>
+                    <div class="award-issuer">Issued by Semen Indonesia (Persero), Tbk · Sep 2025</div>
+                    <div class="award-desc">
+                        Associated with PT Semen Indonesia (Persero) Tbk
+                    </div>
+                </div>
+
+                <!-- SIG One Truth Award -->
+                <div class="award-card">
+                    <div class="award-badge">SIG One Truth</div>
+                    <div class="award-title">Enterprise Data Warehouse Implementation</div>
+                    <div class="award-issuer">Single Source of Truth (SSoT) in Sales & Marketing</div>
+                    
+                    <div class="award-desc">
+                        Standarisasi sumber kebenaran tunggal (single source of truth) dengan mengimplementasikan konsep SIG One Truth, melalui platform Enterprise Data Warehouse, untuk menyediakan sumber data yang akurat, tepat waktu, dan terintegrasi.
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">70+</div>
+                            <div class="stat-label">Total Pengguna DWH</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">GB Volume Storage</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">600+</div>
+                            <div class="stat-label">Juta Row Data</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Published Dashboard</div>
+                        </div>
+                    </div>
+
+                    <div class="award-desc" style="margin-top: 20px; font-style: italic;">
+                        Schema & MV's Ready-to-use, clean & automated data sources (SAP, API apps, documents)
+                    </div>
+
+                    <div class="award-desc" style="color: var(--superbank-green); margin-top: 16px; font-weight: 500;">
+                        Insight yang dihasilkan untuk kemudahan pengambilan keputusan berdasarkan real & clean data yang terotomasi.
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <div class="section-header">
+                    <h2 class="section-title">Certifications</h2>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="badge" style="font-size: 16px; padding: 12px 24px;">📜 BNSP Certified : Data Analyst</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recommendations</h2>
+                <a href="#" class="view-all">View all 3 →</a>
+            </div>
+
+            <div class="recom-grid">
+                <div class="recom-card">
+                    <div class="recom-header">
+                        <div class="recom-avatar">BP</div>
+                        <div class="recom-info">
+                            <h4>Budi Purnama</h4>
+                            <p>Optimization Business Process, Marketing Intelligence</p>
+                        </div>
+                    </div>
+                    <div class="recom-text">
+                        Senang bisa bekerja sama dengan mas reza walau hanya satu tahun, mas Reza orang fast learning, responsive, dan very important is very adaptable, salah satu orang di balik layar project yang berkesan membuat simplify sales process di SIG yang meraih penghargaan best innovation dan membantu ICT develop fundamental Data warehouse cikal bakal digitalization di SIG... good luck mas Reza semoga karirnya makin melesat dan bermanfaat buat BUMN tercinta
+                    </div>
+                    <div class="recom-date">📅 August 4, 2025 · Budi managed Reza directly</div>
+                </div>
+
+                <div class="recom-card">
+                    <div class="recom-header">
+                        <div class="recom-avatar">BA</div>
+                        <div class="recom-info">
+                            <h4>Bimo A</h4>
+                            <p>Senior Manager of Sales Analytics & Process System Development</p>
+                        </div>
+                    </div>
+                    <div class="recom-text">
+                        I had the pleasure of working with Reza in the Sales Field, where he has consistently demonstrated remarkable innovation in data analytics. His ideas and contributions have had an impact on the company, driving positive changes and improvements. Reza possesses a deep understanding of sales and its business processes, which he leverages to enhance our data analytical capabilities.
+                    </div>
+                    <div class="recom-date">📅 May 23, 2024 · Bimo managed Reza directly</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="languages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Languages</h2>
+            </div>
+
+            <div class="languages-grid">
+                <div class="language-item">
+                    <span class="language-name">🇮🇩 Bahasa Indonesia</span>
+                    <span class="language-level">Native</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">🇬🇧 English</span>
+                    <span class="language-level">Professional working proficiency</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+            </div>
+
+            <div class="exp-card" style="max-width: 600px;">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <h3>Universitas Gunadarma</h3>
+                        <div class="exp-company">Bachelor's degree, Computer Science</div>
+                    </div>
+                    <div class="exp-date">Oct 2010 - Oct 2014</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteering">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Volunteering</h2>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <h3>Head of KIR Division</h3>
+                        <div class="exp-company">Organisasi Siswa Intra Sekolah</div>
+                    </div>
+                    <div class="exp-date">Jun 2007 - Jun 2008 · 1 yr 1 mo</div>
+                </div>
+                <div class="exp-content">
+                    Arts and Culture School organization
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Profile Analytics</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="profile-stats">
+                    <div class="stat-block">
+                        <div class="number">102</div>
+                        <div class="label">Profile Views</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="number">26</div>
+                        <div class="label">Post Impressions</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="number">8</div>
+                        <div class="label">Search Appearances</div>
+                    </div>
+                </div>
+
+                <div class="linkedin-url">
+                    🔗 www.linkedin.com/in/reza-ardiyansah-176775131
+                </div>
+
+                <div class="contact-info" style="justify-content: center;">
+                    <a href="tel:+6285714699593" class="contact-item">📞 +62 857 1469 9593</a>
+                    <a href="mailto:rezaardiyansah91@gmail.com" class="contact-item">✉️ rezaardiyansah91@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Reza Ardiyansah - Data Analyst & Business Intelligence Analyst</p>
+            <p style="margin-top: 12px; font-size: 12px;">Based on LinkedIn profile · Updated March 2026 · Data Analytics Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy contact info
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Contact information copied to clipboard!');
+            });
+        }
+
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const text = this.textContent.replace(/[📞✉️🔗]/g, '').trim();
+                copyText(text);
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(13, 13, 13, 0.98)';
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+            } else {
+                nav.style.background = 'rgba(13, 13, 13, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.exp-card, .award-card, .recom-card, .language-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
