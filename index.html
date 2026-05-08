@@ -328,6 +328,21 @@
             box-shadow: 0 0 10px var(--superbank-green);
         }
 
+        .view-all {
+            color: var(--superbank-green);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+        }
+
+        .view-all:hover {
+            gap: 8px;
+            text-shadow: 0 0 10px var(--superbank-green);
+        }
+
         .about-text {
             font-size: 16px;
             color: var(--superbank-text-secondary);
@@ -781,7 +796,7 @@
             border-top: 1px solid var(--superbank-border);
         }
 
-        /* BI PROJECTS SECTION - DIPERBAIKI UNTUK CANVA */
+        /* BI PROJECTS SECTION - DIPERBAIKI DENGAN CANVA EMBED YANG BENAR */
         .bi-slides-wrapper {
             background: var(--superbank-gray);
             border: 1px solid var(--superbank-border);
@@ -837,19 +852,23 @@
             font-weight: 600;
         }
 
+        /* Canva embed wrapper */
         .bi-slides-embed {
             position: relative;
             width: 100%;
-            height: 500px;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
             background: #0a0a0a;
+            overflow: hidden;
+            border-radius: 0;
         }
 
-        /* Canva specific styling */
         .bi-slides-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            background: #fff;
         }
 
         .bi-slides-footer {
@@ -857,7 +876,7 @@
             border-top: 1px solid var(--superbank-border);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             color: var(--superbank-text-secondary);
             font-size: 13px;
             flex-wrap: wrap;
@@ -876,6 +895,9 @@
             color: var(--superbank-green);
             text-decoration: none;
             margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .bi-slides-footer a:hover {
@@ -913,8 +935,8 @@
                 align-items: flex-start;
             }
 
-            .bi-slides-embed {
-                height: 400px;
+            .bi-slides-footer a {
+                margin-left: 0;
             }
         }
 
@@ -942,10 +964,6 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
-            .bi-slides-embed {
-                height: 300px;
-            }
         }
 
         @keyframes fadeInUp {
@@ -961,14 +979,6 @@
 
         .fade-in-up {
             animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .glow-text {
-            text-shadow: 0 0 10px var(--superbank-green);
-        }
-
-        .glow-border {
-            box-shadow: 0 0 10px var(--superbank-green);
         }
     </style>
 </head>
@@ -1264,7 +1274,7 @@
     </section>
 
     <!-- ============================================= -->
-    <!-- BI PROJECTS SECTION - DENGAN CANVA EMBED     -->
+    <!-- BI PROJECTS SECTION - CANVA EMBED FIXED       -->
     <!-- ============================================= -->
     <section id="bi-projects">
         <div class="container">
@@ -1275,8 +1285,8 @@
             <div class="bi-slides-wrapper">
                 <div class="bi-slides-header">
                     <div class="bi-slides-header-left">
-                        <div class="bi-slides-label">BI Dashboard Portfolio</div>
-                        <div class="bi-slides-title">BI Dashboard Development Portfolio by Reza Ardiyansah</div>
+                        <div class="bi-slides-label">Portfolio Presentation</div>
+                        <div class="bi-slides-title">BI Dashboard Development Portfolio</div>
                     </div>
                     <div class="bi-slides-tags">
                         <span class="bi-slides-tag">Power BI</span>
@@ -1287,18 +1297,22 @@
                     </div>
                 </div>
 
-                <!-- CANVA EMBED - PUBLIC ACCESS TANPA LOGIN -->
+                <!-- CANVA EMBED - CORRECT LINK FROM YOUR CODE -->
                 <div class="bi-slides-embed">
                     <iframe 
-                        src="https://www.canva.com/design/DAGk7F-j2mk/32bqwwy8snek1z2/view?embed" 
+                        loading="lazy"
+                        src="https://www.canva.com/design/DAHJD_K8HLI/RpT5-uW7cagaKA2V8B3d7Q/view?embed" 
+                        allowfullscreen="allowfullscreen" 
                         allow="fullscreen">
                     </iframe>
                 </div>
 
                 <div class="bi-slides-footer">
                     <div class="bi-slides-footer-dot"></div>
-                    <span>📌 Akses publik - Bisa dibuka tanpa login | Project lain masih proses ditambahkan</span>
-                    <a href="https://canva.link/32bqwwy8snek1z2" target="_blank">🔗 Buka di Canva →</a>
+                    <span>📌 Akses publik - Bisa dibuka tanpa login | Project lain masih proses ditambahkan | Gunakan tombol navigasi di bawah slide untuk berpindah halaman</span>
+                    <a href="https://www.canva.com/design/DAHJD_K8HLI/RpT5-uW7cagaKA2V8B3d7Q/view?utm_content=DAHJD_K8HLI&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">
+                        🔗 Buka di Canva →
+                    </a>
                 </div>
             </div>
         </div>
