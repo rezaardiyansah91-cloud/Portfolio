@@ -31,12 +31,10 @@
             line-height: 1.6;
         }
 
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -61,13 +59,11 @@
             padding: 0 24px;
         }
 
-        /* Typography */
         h1, h2, h3, h4 {
             font-weight: 600;
             line-height: 1.2;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -129,7 +125,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -202,19 +197,6 @@
             object-fit: cover;
             border-radius: 50%;
             border: 3px solid var(--superbank-black);
-        }
-
-        .connection-count {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--superbank-gray);
-            padding: 8px 16px;
-            border-radius: 30px;
-            border: 1px solid var(--superbank-border);
-            color: var(--superbank-text-secondary);
-            font-size: 14px;
-            margin-top: 10px;
         }
 
         .hero-main h1 {
@@ -292,7 +274,6 @@
             text-shadow: 0 0 10px var(--superbank-green);
         }
 
-        /* Section Styles */
         section {
             padding: 100px 0;
             position: relative;
@@ -347,22 +328,6 @@
             box-shadow: 0 0 10px var(--superbank-green);
         }
 
-        .view-all {
-            color: var(--superbank-green);
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: all 0.3s;
-        }
-
-        .view-all:hover {
-            gap: 8px;
-            text-shadow: 0 0 10px var(--superbank-green);
-        }
-
-        /* About Section */
         .about-text {
             font-size: 16px;
             color: var(--superbank-text-secondary);
@@ -400,7 +365,6 @@
             box-shadow: 0 0 15px var(--superbank-glow);
         }
 
-        /* Experience Cards */
         .experience-grid {
             display: grid;
             gap: 24px;
@@ -543,7 +507,6 @@
             color: var(--superbank-text-secondary);
         }
 
-        /* Award Cards */
         .award-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -634,7 +597,6 @@
             font-size: 13px;
         }
 
-        /* Recommendations */
         .recom-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -716,7 +678,6 @@
             gap: 8px;
         }
 
-        /* Languages */
         .languages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -755,7 +716,6 @@
             border-radius: 30px;
         }
 
-        /* Contact Section */
         .contact-section {
             background: linear-gradient(145deg, var(--superbank-gray), var(--superbank-black));
         }
@@ -813,7 +773,6 @@
             color: var(--superbank-green);
         }
 
-        /* Footer */
         footer {
             padding: 40px 0;
             text-align: center;
@@ -822,9 +781,7 @@
             border-top: 1px solid var(--superbank-border);
         }
 
-        /* =============================================
-           BI PROJECTS SECTION - NEW
-           ============================================= */
+        /* BI PROJECTS SECTION - DIPERBAIKI UNTUK CANVA */
         .bi-slides-wrapper {
             background: var(--superbank-gray);
             border: 1px solid var(--superbank-border);
@@ -882,19 +839,17 @@
 
         .bi-slides-embed {
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: #111;
+            width: 100%;
+            height: 500px;
+            background: #0a0a0a;
         }
 
+        /* Canva specific styling */
         .bi-slides-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             border: none;
+            background: #fff;
         }
 
         .bi-slides-footer {
@@ -905,6 +860,7 @@
             gap: 8px;
             color: var(--superbank-text-secondary);
             font-size: 13px;
+            flex-wrap: wrap;
         }
 
         .bi-slides-footer-dot {
@@ -915,11 +871,17 @@
             flex-shrink: 0;
             box-shadow: 0 0 6px var(--superbank-green);
         }
-        /* =============================================
-           END BI PROJECTS SECTION
-           ============================================= */
 
-        /* Responsive */
+        .bi-slides-footer a {
+            color: var(--superbank-green);
+            text-decoration: none;
+            margin-left: auto;
+        }
+
+        .bi-slides-footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 968px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -950,6 +912,10 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .bi-slides-embed {
+                height: 400px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -976,9 +942,12 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .bi-slides-embed {
+                height: 300px;
+            }
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -994,7 +963,6 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        /* Glow effect for Superbank style */
         .glow-text {
             text-shadow: 0 0 10px var(--superbank-green);
         }
@@ -1027,7 +995,6 @@
                     <div class="profile-image">
                         <img src="https://iili.io/qdnzJv2.png" alt="Reza Ardiyansah">
                     </div>
-                    
                 </div>
 
                 <div class="hero-main">
@@ -1049,7 +1016,7 @@
                     <div class="contact-info">
                         <a href="tel:+6285714699593" class="contact-item">📞 +62 857 1469 9593</a>
                         <a href="mailto:rezaardiyansah91@gmail.com" class="contact-item">✉️ rezaardiyansah91@gmail.com</a>
-                        <a href="#" class="contact-item">🔗 https://www.linkedin.com/in/reza-ardiyansah-176775131/</a>
+                        <a href="#" class="contact-item">🔗 linkedin.com/in/reza-ardiyansah-176775131</a>
                     </div>
                 </div>
             </div>
@@ -1093,7 +1060,6 @@
             </div>
 
             <div class="experience-grid">
-                <!-- Current Role -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1115,7 +1081,6 @@
                     </div>
                 </div>
 
-                <!-- Sr. Sales System Development -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1134,7 +1099,6 @@
                     </div>
                 </div>
 
-                <!-- Sr. Sales Analytics & Development -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1163,7 +1127,6 @@
                     </div>
                 </div>
 
-                <!-- Sales Process Group -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1190,7 +1153,6 @@
                     </div>
                 </div>
 
-                <!-- IT Support and Claim Insurance Analyst -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1228,7 +1190,6 @@
                     </div>
                 </div>
 
-                <!-- Marketing Sys. Analyst Support -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1265,7 +1226,6 @@
                     </div>
                 </div>
 
-                <!-- Area Operation Admin -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1303,9 +1263,9 @@
         </div>
     </section>
 
-    <!-- =============================================
-         BI PROJECTS SECTION - NEW
-         ============================================= -->
+    <!-- ============================================= -->
+    <!-- BI PROJECTS SECTION - DENGAN CANVA EMBED     -->
+    <!-- ============================================= -->
     <section id="bi-projects">
         <div class="container">
             <div class="section-header">
@@ -1313,11 +1273,10 @@
             </div>
 
             <div class="bi-slides-wrapper">
-                <!-- Header -->
                 <div class="bi-slides-header">
                     <div class="bi-slides-header-left">
-                        <div class="bi-slides-label">Portfolio Presentation</div>
-                        <div class="bi-slides-title">BI Dashboard Development Portfolio</div>
+                        <div class="bi-slides-label">BI Dashboard Portfolio</div>
+                        <div class="bi-slides-title">BI Dashboard Development Portfolio by Reza Ardiyansah</div>
                     </div>
                     <div class="bi-slides-tags">
                         <span class="bi-slides-tag">Power BI</span>
@@ -1328,27 +1287,25 @@
                     </div>
                 </div>
 
-                <!-- Embedded Google Slides (view only, no download) -->
+                <!-- CANVA EMBED - PUBLIC ACCESS TANPA LOGIN -->
                 <div class="bi-slides-embed">
-                    <iframe
-                        src="https://docs.google.com/presentation/d/1bbZPhCHwohSZjEX8q-gzMou2q-AmNRVTx5ykmj1Wyg0/edit?usp=sharing"
-                        allowfullscreen="true"
-                        mozallowfullscreen="true"
-                        webkitallowfullscreen="true">
+                    <iframe 
+                        src="https://www.canva.com/design/DAGk7F-j2mk/32bqwwy8snek1z2/view?embed" 
+                        allow="fullscreen">
                     </iframe>
                 </div>
 
-                <!-- Footer -->
                 <div class="bi-slides-footer">
                     <div class="bi-slides-footer-dot"></div>
-                    Project lain masih proses ditambahkan. Gunakan tombol navigasi di bawah slide untuk berpindah halaman. Fullscreen tersedia di pojok kanan bawah.
+                    <span>📌 Akses publik - Bisa dibuka tanpa login | Project lain masih proses ditambahkan</span>
+                    <a href="https://canva.link/32bqwwy8snek1z2" target="_blank">🔗 Buka di Canva →</a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- =============================================
-         END BI PROJECTS SECTION
-         ============================================= -->
+    <!-- ============================================= -->
+    <!-- END BI PROJECTS SECTION                       -->
+    <!-- ============================================= -->
 
     <section id="awards">
         <div class="container">
@@ -1357,7 +1314,6 @@
             </div>
 
             <div class="award-grid">
-                <!-- SIG Innovation Award -->
                 <div class="award-card">
                     <div class="award-badge">SIG Innovation Award 2025</div>
                     <div class="award-title">2nd Place - Category Digitalization</div>
@@ -1367,7 +1323,6 @@
                     </div>
                 </div>
 
-                <!-- SIG One Truth Award -->
                 <div class="award-card">
                     <div class="award-badge">SIG One Truth</div>
                     <div class="award-title">Enterprise Data Warehouse Implementation</div>
@@ -1537,7 +1492,7 @@
                 </div>
 
                 <div class="linkedin-url">
-                    🔗 www.linkedin.com/in/reza-ardiyansah-176775131
+                    🔗 linkedin.com/in/reza-ardiyansah-176775131
                 </div>
 
                 <div class="contact-info" style="justify-content: center;">
@@ -1556,7 +1511,6 @@
     </footer>
 
     <script>
-        // Copy contact info
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Contact information copied to clipboard!');
@@ -1571,7 +1525,6 @@
             });
         });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 100) {
@@ -1583,7 +1536,6 @@
             }
         });
 
-        // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
