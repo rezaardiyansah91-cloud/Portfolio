@@ -1179,13 +1179,14 @@
             </div>
 
             <div class="experience-grid">
-                <div class="exp-card">
+                <!-- Posisi 1: Current Role - DINAMIS (otomatis update durasi) -->
+                <div class="exp-card" data-start-date="2026-01-01" data-current="true">
                     <div class="exp-header">
                         <div class="exp-title">
                             <h3>Data Analyst - Unit of Data Analytics, Innovation & Emerging Tech</h3>
                             <div class="exp-company">PT Semen Indonesia (Persero) Tbk</div>
                         </div>
-                        <div class="exp-date">Jan 2026 - Present · 3 mos</div>
+                        <div class="exp-date">Jan 2026 - Present · <span class="duration-text">Loading...</span></div>
                     </div>
                     <div class="exp-content">
                         <p>Jakarta, Indonesia</p>
@@ -1200,6 +1201,7 @@
                     </div>
                 </div>
 
+                <!-- Posisi 2: Static date (tidak dinamis karena sudah selesai) -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1218,6 +1220,7 @@
                     </div>
                 </div>
 
+                <!-- Posisi 3: Static date -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1246,6 +1249,7 @@
                     </div>
                 </div>
 
+                <!-- Posisi 4 sampai 7: Static date (tidak berubah) -->
                 <div class="exp-card">
                     <div class="exp-header">
                         <div class="exp-title">
@@ -1634,6 +1638,55 @@
     </footer>
 
     <script>
+        // ========== FUNGSI HITUNG DURASI DINAMIS ==========
+        function calculateDuration(startDateStr, isCurrent = false) {
+            const start = new Date(startDateStr);
+            const end = isCurrent ? new Date() : new Date();
+            
+            let years = end.getFullYear() - start.getFullYear();
+            let months = end.getMonth() - start.getMonth();
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Hitung total bulan untuk durasi yang lebih akurat
+            let totalMonths = (years * 12) + months;
+            
+            if (totalMonths < 1) {
+                return "Less than 1 mo";
+            } else if (totalMonths === 1) {
+                return "1 mo";
+            } else if (totalMonths < 12) {
+                return totalMonths + " mos";
+            } else {
+                let remainingMonths = totalMonths % 12;
+                if (remainingMonths === 0) {
+                    return years + " yr" + (years > 1 ? "s" : "");
+                } else {
+                    return years + " yr" + (years > 1 ? "s" : "") + " " + remainingMonths + " mo" + (remainingMonths > 1 ? "s" : "");
+                }
+            }
+        }
+
+        // Update semua durasi yang dinamis
+        function updateDynamicDurations() {
+            document.querySelectorAll('.exp-card[data-current="true"]').forEach(card => {
+                const startDate = card.getAttribute('data-start-date');
+                if (startDate) {
+                    const duration = calculateDuration(startDate, true);
+                    const durationSpan = card.querySelector('.duration-text');
+                    if (durationSpan) {
+                        durationSpan.textContent = duration;
+                    }
+                }
+            });
+        }
+
+        // Jalankan saat halaman load
+        updateDynamicDurations();
+
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Contact information copied to clipboard!');
