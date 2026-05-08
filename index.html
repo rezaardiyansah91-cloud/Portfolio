@@ -125,6 +125,91 @@
             width: 100%;
         }
 
+        /* ========== HAMBURGER MENU UNTUK MOBILE ========== */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--superbank-green);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Navigation Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 280px;
+            height: 100vh;
+            background: rgba(13, 13, 13, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 80px 24px 24px;
+            border-left: 1px solid rgba(0, 230, 153, 0.2);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: var(--superbank-text-secondary);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 230, 153, 0.1);
+            transition: all 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--superbank-green);
+            padding-left: 8px;
+        }
+
+        /* Overlay background */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none;
+        }
+
+        .nav-overlay.active {
+            display: block;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -856,7 +941,7 @@
         .bi-slides-embed {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
             background: #0a0a0a;
             overflow: hidden;
             border-radius: 0;
@@ -941,6 +1026,10 @@
         }
 
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -986,6 +1075,14 @@
     <nav>
         <div class="nav-content">
             <div class="logo">Reza Ardiyansah</div>
+            
+            <!-- TOMBOL HAMBURGER UNTUK MOBILE -->
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
@@ -997,6 +1094,18 @@
             </div>
         </div>
     </nav>
+
+    <!-- MOBILE NAVIGATION PANEL -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#bi-projects">BI Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#recommendations">Recommendations</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <section id="home" class="hero">
         <div class="container">
@@ -1564,6 +1673,44 @@
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
+        });
+
+        // ========== HAMBURGER MENU TOGGLE ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openMenu() {
+            menuToggle.classList.add('active');
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                if (mobileNav.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if (navOverlay) {
+            navOverlay.addEventListener('click', closeMenu);
+        }
+
+        // Close menu when clicking a mobile nav link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
     </script>
 </body>
